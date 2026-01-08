@@ -1,0 +1,43 @@
+import '/auth/custom_auth/auth_util.dart';
+import '/backend/schema/enums/enums.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/shared/create_alias_component/create_alias_component_widget.dart';
+import '/shared/secondary_header/secondary_header_widget.dart';
+import 'dart:math';
+import 'dart:ui';
+import '/custom_code/actions/index.dart' as actions;
+import '/index.dart';
+import 'create_first_alias_component_widget.dart'
+    show CreateFirstAliasComponentWidget;
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
+class CreateFirstAliasComponentModel
+    extends FlutterFlowModel<CreateFirstAliasComponentWidget> {
+  ///  State fields for stateful widgets in this component.
+
+  // Model for secondaryHeader component.
+  late SecondaryHeaderModel secondaryHeaderModel;
+  // Model for createAliasComponent component.
+  late CreateAliasComponentModel createAliasComponentModel;
+
+  @override
+  void initState(BuildContext context) {
+    secondaryHeaderModel = createModel(context, () => SecondaryHeaderModel());
+    createAliasComponentModel =
+        createModel(context, () => CreateAliasComponentModel());
+  }
+
+  @override
+  void dispose() {
+    secondaryHeaderModel.dispose();
+    createAliasComponentModel.dispose();
+  }
+}

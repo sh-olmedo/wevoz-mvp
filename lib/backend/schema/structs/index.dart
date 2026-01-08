@@ -1,0 +1,21 @@
+export '/backend/schema/util/schema_util.dart';
+
+export 'abuse_report_struct.dart';
+export 'alias_struct.dart';
+export 'bug_struct.dart';
+export 'channel_struct.dart';
+export 'chapter_struct.dart';
+export 'comment_struct.dart';
+export 'hashtag_struct.dart';
+export 'login_res_struct.dart';
+export 'mare_magnum_content_res_struct.dart';
+export 'notification_struct.dart';
+export 'permission_struct.dart';
+export 'playlist_struct.dart';
+export 'playlist_chapter_struct.dart';
+export 'policy_struct.dart';
+export 'post_struct.dart';
+export 'reaction_struct.dart';
+export 'role_struct.dart';
+export 'user_struct.dart';
+export 'voz_cast_struct.dart';

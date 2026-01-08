@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "72260453716",
+    "project_id": "wevoz-5a0ec",
+    "storage_bucket": "wevoz-5a0ec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:72260453716:android:f09261e421df1be1e2b4c1",
+        "android_client_info": {
+          "package_name": "com.wevoz.wevoz"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRqtczFgswfK-KHgEL5cvoyjSKodjo3wM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
