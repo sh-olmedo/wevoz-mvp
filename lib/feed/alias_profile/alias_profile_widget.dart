@@ -812,8 +812,12 @@ class _AliasProfileWidgetState extends State<AliasProfileWidget>
                                                                           0.0,
                                                                           0.0),
                                                                   child: FaIcon(
-                                                                    FontAwesomeIcons
-                                                                        .comments,
+                                                                    FaIconData(const IconData(
+                                                                        /* comments */ 0xf086,
+                                                                        fontFamily:
+                                                                            'FontAwesomeRegular',
+                                                                        fontPackage:
+                                                                            'font_awesome_flutter')),
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
                                                                         .secondaryBackground,
@@ -950,8 +954,10 @@ class _AliasProfileWidgetState extends State<AliasProfileWidget>
                                                                       children:
                                                                           [
                                                                         FaIcon(
-                                                                          FontAwesomeIcons
-                                                                              .comments,
+                                                                          FaIconData(const IconData(
+                                                                              /* comments */ 0xf086,
+                                                                              fontFamily: 'FontAwesomeRegular',
+                                                                              fontPackage: 'font_awesome_flutter')),
                                                                           color:
                                                                               Colors.white,
                                                                           size:
@@ -1493,8 +1499,6 @@ class _AliasProfileWidgetState extends State<AliasProfileWidget>
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(0.0),
-                                  bottomRight: Radius.circular(0.0),
                                   topLeft: Radius.circular(16.0),
                                   topRight: Radius.circular(16.0),
                                 ),

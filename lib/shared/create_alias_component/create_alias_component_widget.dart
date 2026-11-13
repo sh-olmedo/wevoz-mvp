@@ -383,7 +383,7 @@ class _CreateAliasComponentWidgetState
                                   );
 
                                   _shouldSetState = true;
-                                  authManager.updateAuthUserData(
+                                  await authManager.updateAuthUserData(
                                     authenticationToken:
                                         currentAuthenticationToken,
                                     authUid: currentUserUid,

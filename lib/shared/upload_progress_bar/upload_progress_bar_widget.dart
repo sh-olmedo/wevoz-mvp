@@ -136,7 +136,9 @@ class _UploadProgressBarWidgetState extends State<UploadProgressBarWidget> {
                       ),
                     ),
                     FaIcon(
-                      FontAwesomeIcons.trashAlt,
+                      FaIconData(const IconData(/* trashAlt */ 0xf2ed,
+                          fontFamily: 'FontAwesomeRegular',
+                          fontPackage: 'font_awesome_flutter')),
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                       size: 24.0,
                     ),

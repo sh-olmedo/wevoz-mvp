@@ -130,7 +130,9 @@ class _FilterOptionsWidgetState extends State<FilterOptionsWidget> {
                               ),
                             if (widget!.filterName == FilterOptions.Content)
                               FaIcon(
-                                FontAwesomeIcons.comment,
+                                FaIconData(const IconData(/* comment */ 0xf075,
+                                    fontFamily: 'FontAwesomeRegular',
+                                    fontPackage: 'font_awesome_flutter')),
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
                                 size: 22.0,
@@ -199,8 +201,6 @@ class _FilterOptionsWidgetState extends State<FilterOptionsWidget> {
                               borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(18.0),
                                 bottomRight: Radius.circular(18.0),
-                                topLeft: Radius.circular(0.0),
-                                topRight: Radius.circular(0.0),
                               ),
                             ),
                             child: Column(

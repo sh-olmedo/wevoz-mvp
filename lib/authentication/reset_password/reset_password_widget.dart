@@ -93,8 +93,6 @@ class _ResetPasswordWidgetState extends State<ResetPasswordWidget>
                 decoration: BoxDecoration(
                   color: Color(0xFF0B2C3D),
                   borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(0.0),
-                    bottomRight: Radius.circular(0.0),
                     topLeft: Radius.circular(24.0),
                     topRight: Radius.circular(24.0),
                   ),
@@ -241,11 +239,12 @@ class _ResetPasswordWidgetState extends State<ResetPasswordWidget>
                       color: FlutterFlowTheme.of(context).primary,
                     ),
                     suffixIcon: InkWell(
-                      onTap: () => safeSetState(
-                        () => _model.newPasswordVisibility =
-                            !_model.newPasswordVisibility,
-                      ),
-                      focusNode: FocusNode(skipTraversal: true),
+                      onTap: () async {
+                        safeSetState(() => _model.newPasswordVisibility =
+                            !_model.newPasswordVisibility);
+                      },
+                      focusNode: _model.newPasswordPasswordVisibilityFocusNode
+                        ..skipTraversal = !(false),
                       child: Icon(
                         _model.newPasswordVisibility
                             ? Icons.visibility_outlined

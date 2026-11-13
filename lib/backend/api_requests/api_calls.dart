@@ -287,7 +287,7 @@ class AddAliasCall {
     final ffApiRequestBody = '''
 {
   "user_id": ${userId},
-  "name": "${escapeStringForJson(newAliasName)}"
+  "name": ${newAliasName == null ? 'null' : '"${escapeStringForJson(newAliasName)}"'}
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Add Alias',
@@ -422,7 +422,7 @@ class VerifyAliasNameCall {
     );
 
     final ffApiRequestBody = '''
-"${escapeStringForJson(nameToVerify)}"''';
+${nameToVerify == null ? 'null' : '"${escapeStringForJson(nameToVerify)}"'}''';
     return ApiManager.instance.makeApiCall(
       callName: 'Verify Alias name',
       apiUrl: '${baseUrl}/Alias/${unloggedToken}/verifyAlias',
@@ -3830,8 +3830,8 @@ class LoginCall {
 
     final ffApiRequestBody = '''
 {
-  "username": "${escapeStringForJson(username)}",
-  "password": "${escapeStringForJson(password)}"
+  "username": ${username == null ? 'null' : '"${escapeStringForJson(username)}"'},
+  "password": ${password == null ? 'null' : '"${escapeStringForJson(password)}"'}
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Login',
@@ -3927,8 +3927,8 @@ class ChangePassworddCall {
 
     final ffApiRequestBody = '''
 {
-  "password": "${escapeStringForJson(newPassword)}",
-  "confirmPassword": "${escapeStringForJson(confirmNewPassword)}"
+  "password": ${newPassword == null ? 'null' : '"${escapeStringForJson(newPassword)}"'},
+  "confirmPassword": ${confirmNewPassword == null ? 'null' : '"${escapeStringForJson(confirmNewPassword)}"'}
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Change Passwordd',
@@ -4067,7 +4067,7 @@ class VerifyEmailCall {
     );
 
     final ffApiRequestBody = '''
-"${escapeStringForJson(emailToVerify)}"''';
+${emailToVerify == null ? 'null' : '"${escapeStringForJson(emailToVerify)}"'}''';
     return ApiManager.instance.makeApiCall(
       callName: 'Verify Email',
       apiUrl: '${baseUrl}/verify_email',
@@ -4269,9 +4269,6 @@ String? escapeStringForJson(String? input) {
   if (input == null) {
     return null;
   }
-  return input
-      .replaceAll('\\', '\\\\')
-      .replaceAll('"', '\\"')
-      .replaceAll('\n', '\\n')
-      .replaceAll('\t', '\\t');
+  final encoded = jsonEncode(input);
+  return encoded.substring(1, encoded.length - 1);
 }

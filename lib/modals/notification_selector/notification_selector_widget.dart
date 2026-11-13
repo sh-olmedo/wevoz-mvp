@@ -107,8 +107,6 @@ class _NotificationSelectorWidgetState
                           color: FlutterFlowTheme.of(context)
                               .widgetHeaderBackground,
                           borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(0.0),
-                            bottomRight: Radius.circular(0.0),
                             topLeft: Radius.circular(16.0),
                             topRight: Radius.circular(16.0),
                           ),
@@ -220,7 +218,10 @@ class _NotificationSelectorWidgetState
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 FaIcon(
-                                  FontAwesomeIcons.comments,
+                                  FaIconData(const IconData(
+                                      /* comments */ 0xf086,
+                                      fontFamily: 'FontAwesomeRegular',
+                                      fontPackage: 'font_awesome_flutter')),
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryText,
                                   size: 24.0,
@@ -344,7 +345,10 @@ class _NotificationSelectorWidgetState
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 FaIcon(
-                                  FontAwesomeIcons.commentDots,
+                                  FaIconData(const IconData(
+                                      /* commentDots */ 0xf4ad,
+                                      fontFamily: 'FontAwesomeRegular',
+                                      fontPackage: 'font_awesome_flutter')),
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryText,
                                   size: 24.0,

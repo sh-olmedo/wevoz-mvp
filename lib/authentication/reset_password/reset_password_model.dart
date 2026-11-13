@@ -17,6 +17,7 @@ class ResetPasswordModel extends FlutterFlowModel<ResetPasswordWidget> {
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for newPassword widget.
+  late FocusNode newPasswordPasswordVisibilityFocusNode;
   FocusNode? newPasswordFocusNode;
   TextEditingController? newPasswordTextController;
   late bool newPasswordVisibility;
@@ -26,6 +27,7 @@ class ResetPasswordModel extends FlutterFlowModel<ResetPasswordWidget> {
 
   @override
   void initState(BuildContext context) {
+    newPasswordPasswordVisibilityFocusNode = FocusNode();
     newPasswordVisibility = false;
   }
 
@@ -33,5 +35,6 @@ class ResetPasswordModel extends FlutterFlowModel<ResetPasswordWidget> {
   void dispose() {
     newPasswordFocusNode?.dispose();
     newPasswordTextController?.dispose();
+    newPasswordPasswordVisibilityFocusNode.dispose();
   }
 }

@@ -31,6 +31,25 @@ abstract class FFApiInterceptor {
   /// calls or modifications to the [response] prior to returning it. If the
   /// API call should be retried, call the [retryFn] function which will call
   /// the API from scratch using the original [ApiCallOptions] passed in.
+  ///
+  /// The request details (URL, HTTP method, headers, params, body) are available
+  /// via [response.requestOptions]. This is useful for implementing response-driven
+  /// behaviors that require full request context.
+  ///
+  /// Example:
+  /// ```dart
+  /// @override
+  /// Future<ApiCallResponse> onResponse({
+  ///   required ApiCallResponse response,
+  ///   required Future<ApiCallResponse> Function() retryFn,
+  /// }) async {
+  ///   final options = response.requestOptions;
+  ///   if (!response.succeeded && options?.apiUrl.contains('/auth') == true) {
+  ///   Handle auth-specific error responses
+  ///   }
+  ///   return response;
+  /// }
+  /// ```
   Future<ApiCallResponse> onResponse({
     required ApiCallResponse response,
     required Future<ApiCallResponse> Function() retryFn,
@@ -58,6 +77,8 @@ abstract class FFApiInterceptor {
     }
     // Make the API call.
     var response = await ApiManager.instance.call(options, client: client);
+    // Attach the request options to the response for access in onResponse.
+    response = response.copyWith(requestOptions: options);
     // Update the response for each interceptor, applied in reverse order.
     for (final interceptor in interceptors.reversed) {
       response = await interceptor.onResponse(

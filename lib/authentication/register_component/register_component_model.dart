@@ -70,6 +70,7 @@ class RegisterComponentModel extends FlutterFlowModel<RegisterComponentWidget> {
   TextEditingController? emailTextController;
   String? Function(BuildContext, String?)? emailTextControllerValidator;
   // State field(s) for password widget.
+  late FocusNode passwordPasswordVisibilityFocusNode;
   FocusNode? passwordFocusNode;
   TextEditingController? passwordTextController;
   late bool passwordVisibility;
@@ -83,6 +84,7 @@ class RegisterComponentModel extends FlutterFlowModel<RegisterComponentWidget> {
   void initState(BuildContext context) {
     secondaryHeaderModel = createModel(context, () => SecondaryHeaderModel());
     nameTextControllerValidator = _nameTextControllerValidator;
+    passwordPasswordVisibilityFocusNode = FocusNode();
     passwordVisibility = false;
   }
 
@@ -103,5 +105,6 @@ class RegisterComponentModel extends FlutterFlowModel<RegisterComponentWidget> {
 
     passwordFocusNode?.dispose();
     passwordTextController?.dispose();
+    passwordPasswordVisibilityFocusNode.dispose();
   }
 }

@@ -61,7 +61,7 @@ class _MainWidgetState extends State<MainWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await actions.initOneSignal();
-      authManager.updateAuthUserData(
+      await authManager.updateAuthUserData(
         authenticationToken:
             "2Hg57f9pVya7z7F2lvFwu0NlUlvgdaDgAGQtkfrdkUhagjCELh",
       );

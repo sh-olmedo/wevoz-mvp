@@ -147,8 +147,6 @@ class _MoreOptionsWidgetState extends State<MoreOptionsWidget>
             decoration: BoxDecoration(
               color: Color(0xFF082330),
               borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(0.0),
-                bottomRight: Radius.circular(0.0),
                 topLeft: Radius.circular(24.0),
                 topRight: Radius.circular(24.0),
               ),
@@ -163,8 +161,6 @@ class _MoreOptionsWidgetState extends State<MoreOptionsWidget>
                     decoration: BoxDecoration(
                       color: Color(0xFF0B2C3D),
                       borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(0.0),
-                        bottomRight: Radius.circular(0.0),
                         topLeft: Radius.circular(24.0),
                         topRight: Radius.circular(24.0),
                       ),
@@ -398,7 +394,9 @@ class _MoreOptionsWidgetState extends State<MoreOptionsWidget>
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         FaIcon(
-                          FontAwesomeIcons.edit,
+                          FaIconData(const IconData(/* edit */ 0xf044,
+                              fontFamily: 'FontAwesomeRegular',
+                              fontPackage: 'font_awesome_flutter')),
                           color: FlutterFlowTheme.of(context).secondaryText,
                           size: 24.0,
                         ),

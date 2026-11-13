@@ -148,7 +148,9 @@ class _FilterAuthorListItemWidgetState
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             FaIcon(
-                              FontAwesomeIcons.smile,
+                              FaIconData(const IconData(/* smile */ 0xf118,
+                                  fontFamily: 'FontAwesomeRegular',
+                                  fontPackage: 'font_awesome_flutter')),
                               color: Color(0xFFFFFF00),
                               size: 18.0,
                             ),

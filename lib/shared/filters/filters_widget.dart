@@ -101,10 +101,9 @@ class _FiltersWidgetState extends State<FiltersWidget> {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(24.0),
                   bottomLeft: Radius.circular(24.0),
                   bottomRight: Radius.circular(24.0),
-                  topLeft: Radius.circular(0.0),
-                  topRight: Radius.circular(24.0),
                 ),
                 child: AnimatedContainer(
                   duration: Duration(milliseconds: 500),
@@ -112,10 +111,9 @@ class _FiltersWidgetState extends State<FiltersWidget> {
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).widgetBackground,
                     borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(24.0),
                       bottomLeft: Radius.circular(24.0),
                       bottomRight: Radius.circular(24.0),
-                      topLeft: Radius.circular(0.0),
-                      topRight: Radius.circular(24.0),
                     ),
                   ),
                   child: Row(
@@ -286,7 +284,12 @@ class _FiltersWidgetState extends State<FiltersWidget> {
                                           alignment:
                                               AlignmentDirectional(0.0, 0.0),
                                           child: FaIcon(
-                                            FontAwesomeIcons.comment,
+                                            FaIconData(const IconData(
+                                                /* comment */ 0xf075,
+                                                fontFamily:
+                                                    'FontAwesomeRegular',
+                                                fontPackage:
+                                                    'font_awesome_flutter')),
                                             color: valueOrDefault<Color>(
                                               () {
                                                 if (_model.selectedOption ==
@@ -679,7 +682,11 @@ class _FiltersWidgetState extends State<FiltersWidget> {
                                           alignment:
                                               AlignmentDirectional(0.0, 0.0),
                                           child: FaIcon(
-                                            FontAwesomeIcons.hashtag,
+                                            FaIconData(const IconData(
+                                                /* hashtag */ 0x23,
+                                                fontFamily: 'FontAwesomeSolid',
+                                                fontPackage:
+                                                    'font_awesome_flutter')),
                                             color: valueOrDefault<Color>(
                                               () {
                                                 if (_model.selectedOption ==

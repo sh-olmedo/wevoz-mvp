@@ -286,7 +286,7 @@ class UserStruct extends BaseStruct {
 
   @override
   int get hashCode => const ListEquality().hash([
-        aliasList,
+        const ListEquality().hash(aliasList),
         birthDate,
         currentAlias,
         email,

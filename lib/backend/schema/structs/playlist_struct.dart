@@ -275,7 +275,7 @@ class PlaylistStruct extends BaseStruct {
   int get hashCode => const ListEquality().hash([
         alias,
         ageRating,
-        chapters,
+        const ListEquality().hash(chapters),
         description,
         duration,
         id,

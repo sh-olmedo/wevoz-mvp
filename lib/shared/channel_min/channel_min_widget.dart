@@ -493,7 +493,12 @@ class _ChannelMinWidgetState extends State<ChannelMinWidget> {
                                                   MainAxisAlignment.center,
                                               children: [
                                                 FaIcon(
-                                                  FontAwesomeIcons.comments,
+                                                  FaIconData(const IconData(
+                                                      /* comments */ 0xf086,
+                                                      fontFamily:
+                                                          'FontAwesomeRegular',
+                                                      fontPackage:
+                                                          'font_awesome_flutter')),
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .secondaryBackground,

@@ -85,6 +85,7 @@ class PlaylistModel extends FlutterFlowModel<PlaylistWidget> {
 
     loopIndex = startIndex != null ? startIndex! : 0;
     urls = [];
+    updatePage(() {});
     while (
         (urls.length <= 5) || (loopIndex < widget!.playlist!.chapters.length)) {
       await actions.consolePrint(
@@ -166,5 +167,6 @@ class PlaylistModel extends FlutterFlowModel<PlaylistWidget> {
       loopIndex = loopIndex + 1;
     }
     loopIndex = 0;
+    updatePage(() {});
   }
 }

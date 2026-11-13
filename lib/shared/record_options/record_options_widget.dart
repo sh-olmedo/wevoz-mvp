@@ -60,8 +60,6 @@ class _RecordOptionsWidgetState extends State<RecordOptionsWidget> {
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(16.0),
           bottomRight: Radius.circular(16.0),
-          topLeft: Radius.circular(0.0),
-          topRight: Radius.circular(0.0),
         ),
         child: Container(
           width: double.infinity,
@@ -70,8 +68,6 @@ class _RecordOptionsWidgetState extends State<RecordOptionsWidget> {
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(16.0),
               bottomRight: Radius.circular(16.0),
-              topLeft: Radius.circular(0.0),
-              topRight: Radius.circular(0.0),
             ),
             border: Border.all(
               color: FlutterFlowTheme.of(context).primary,
@@ -222,8 +218,6 @@ class _RecordOptionsWidgetState extends State<RecordOptionsWidget> {
                       borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(16.0),
                         bottomRight: Radius.circular(16.0),
-                        topLeft: Radius.circular(0.0),
-                        topRight: Radius.circular(0.0),
                       ),
                     ),
                     child: Row(

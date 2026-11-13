@@ -113,8 +113,6 @@ class _SetSensibleAgeWidgetState extends State<SetSensibleAgeWidget>
             decoration: BoxDecoration(
               color: Color(0xFF082330),
               borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(0.0),
-                bottomRight: Radius.circular(0.0),
                 topLeft: Radius.circular(24.0),
                 topRight: Radius.circular(24.0),
               ),
@@ -127,8 +125,6 @@ class _SetSensibleAgeWidgetState extends State<SetSensibleAgeWidget>
                   decoration: BoxDecoration(
                     color: Color(0xFF0B2C3D),
                     borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(0.0),
-                      bottomRight: Radius.circular(0.0),
                       topLeft: Radius.circular(24.0),
                       topRight: Radius.circular(24.0),
                     ),

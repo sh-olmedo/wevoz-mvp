@@ -90,8 +90,6 @@ class _InsertEmailForgottenPasswordWidgetState
                 decoration: BoxDecoration(
                   color: Color(0xFF0B2C3D),
                   borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(0.0),
-                    bottomRight: Radius.circular(0.0),
                     topLeft: Radius.circular(24.0),
                     topRight: Radius.circular(24.0),
                   ),

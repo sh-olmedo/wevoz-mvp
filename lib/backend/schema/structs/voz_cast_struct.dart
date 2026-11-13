@@ -555,7 +555,7 @@ class VozCastStruct extends BaseStruct {
         alias,
         audioTranscript,
         audioUrl,
-        chapters,
+        const ListEquality().hash(chapters),
         commentsCount,
         createdAt,
         description,
@@ -569,7 +569,7 @@ class VozCastStruct extends BaseStruct {
         reactionCount,
         reproductionCount,
         source,
-        tags,
+        const ListEquality().hash(tags),
         timeDuration,
         updatedAt,
         userId

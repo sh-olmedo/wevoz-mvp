@@ -1108,7 +1108,12 @@ class _SingleVozWidgetState extends State<SingleVozWidget>
                                               MainAxisAlignment.center,
                                           children: [
                                             FaIcon(
-                                              FontAwesomeIcons.comments,
+                                              FaIconData(const IconData(
+                                                  /* comments */ 0xf086,
+                                                  fontFamily:
+                                                      'FontAwesomeRegular',
+                                                  fontPackage:
+                                                      'font_awesome_flutter')),
                                               color: Colors.white,
                                               size: 14.0,
                                             ),

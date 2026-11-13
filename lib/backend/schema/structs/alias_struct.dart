@@ -627,7 +627,7 @@ class AliasStruct extends BaseStruct {
         reactionCount,
         reproductionCount,
         selfIdentity,
-        sexualPreferences,
+        const ListEquality().hash(sexualPreferences),
         source,
         timeDuration,
         userId,

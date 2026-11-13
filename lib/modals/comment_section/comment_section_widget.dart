@@ -117,8 +117,6 @@ class _CommentSectionWidgetState extends State<CommentSectionWidget>
             decoration: BoxDecoration(
               color: FlutterFlowTheme.of(context).widgetBackground,
               borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(0.0),
-                bottomRight: Radius.circular(0.0),
                 topLeft: Radius.circular(16.0),
                 topRight: Radius.circular(16.0),
               ),
@@ -132,8 +130,6 @@ class _CommentSectionWidgetState extends State<CommentSectionWidget>
                   decoration: BoxDecoration(
                     color: Color(0xFF0B2C3D),
                     borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(0.0),
-                      bottomRight: Radius.circular(0.0),
                       topLeft: Radius.circular(24.0),
                       topRight: Radius.circular(24.0),
                     ),

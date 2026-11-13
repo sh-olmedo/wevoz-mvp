@@ -27,6 +27,7 @@
 
 import 'form_field_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/semantics.dart';
 import 'flutter_flow_widgets.dart';
 
 class FlutterFlowRadioButton extends StatefulWidget {
@@ -35,7 +36,7 @@ class FlutterFlowRadioButton extends StatefulWidget {
     required this.options,
     required this.onChanged,
     required this.controller,
-    required this.optionHeight,
+    this.optionHeight,
     required this.textStyle,
     this.optionWidth,
     this.selectedTextStyle,
@@ -51,13 +52,15 @@ class FlutterFlowRadioButton extends StatefulWidget {
     this.focusBorderRadius,
     this.focusBorderPadding,
     this.showBorderAroundRadioButtonAndText = true,
+    this.optionSpacing,
   });
 
   final List<String> options;
   final Function(String?)? onChanged;
   final FormFieldController<String> controller;
-  final double optionHeight;
+  final double? optionHeight;
   final double? optionWidth;
+  final double? optionSpacing;
   final TextStyle textStyle;
   final TextStyle? selectedTextStyle;
   final EdgeInsetsGeometry textPadding;
@@ -126,7 +129,7 @@ class _FlutterFlowRadioButtonState extends State<FlutterFlowRadioButton> {
     return Theme(
       data: Theme.of(context)
           .copyWith(unselectedWidgetColor: widget.inactiveRadioButtonColor),
-      child: RadioGroup<String>.builder(
+      child: FFRadioGroup<String>.builder(
         direction: widget.direction,
         groupValue: controller.value,
         onChanged: enabled ? (value) => controller.value = value : null,
@@ -137,6 +140,7 @@ class _FlutterFlowRadioButtonState extends State<FlutterFlowRadioButton> {
         textPadding: widget.textPadding,
         optionHeight: widget.optionHeight,
         optionWidth: widget.optionWidth,
+        optionSpacing: widget.optionSpacing,
         horizontalAlignment: widget.horizontalAlignment,
         verticalAlignment: widget.verticalAlignment,
         items: effectiveOptions,
@@ -167,7 +171,7 @@ class RadioButtonBuilder<T> {
   final RadioButtonPosition buttonPosition;
 }
 
-class RadioButton<T> extends StatelessWidget {
+class RadioButton<T> extends StatefulWidget {
   const RadioButton({
     super.key,
     required this.description,
@@ -203,90 +207,143 @@ class RadioButton<T> extends StatelessWidget {
   final EdgeInsetsGeometry? focusBorderPadding;
   final bool showBorderAroundRadioButtonAndText;
 
-  Widget _buildRadio(FocusNode? focusNode) {
+  @override
+  State<RadioButton<T>> createState() => _RadioButtonState<T>();
+}
+
+class _RadioButtonState<T> extends State<RadioButton<T>> {
+  // Used when no FFFocusIndicator supplies a focus node.
+  final FocusNode _focusNode = FocusNode();
+
+  // The focus node of the Radio currently built (own or FFFocusIndicator's).
+  late FocusNode _radioFocusNode;
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
+  }
+
+  // Keeps focus on the chosen option, so it does not fall to the page when
+  // the selection removes the focused widget (e.g. a conditional field).
+  // Focus is requested first so an On Selected action that focuses another
+  // field still wins.
+  void _select(T? value) {
+    _radioFocusNode.requestFocus();
+    widget.onChanged!(value);
+  }
+
+  // With a focus border, the FFFocusIndicator is the focus indicator, so the
+  // Radio's own circular focus overlay is hidden (hover/press are kept).
+  Widget _buildRadio(FocusNode focusNode, {bool hasFocusBorder = false}) {
+    _radioFocusNode = focusNode;
     return Radio<T>(
-      groupValue: groupValue,
-      onChanged: onChanged,
-      value: value,
-      activeColor: activeColor,
-      toggleable: toggleable,
+      groupValue: widget.groupValue,
+      onChanged: widget.onChanged != null ? _select : null,
+      value: widget.value,
+      activeColor: widget.activeColor,
+      toggleable: widget.toggleable,
       focusNode: focusNode,
+      overlayColor: hasFocusBorder
+          ? WidgetStateProperty.resolveWith((states) =>
+              states.contains(WidgetState.focused) &&
+                      !states.contains(WidgetState.hovered) &&
+                      !states.contains(WidgetState.pressed)
+                  ? Colors.transparent
+                  : null)
+          : null,
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final selectedStyle = selectedTextStyle;
-    final isSelected = value == groupValue;
+    final selectedStyle = widget.selectedTextStyle;
+    final isSelected = widget.value == widget.groupValue;
     Widget radioButtonText = Padding(
-      padding: textPadding,
+      padding: widget.textPadding,
       child: Text(
-        description,
-        style: isSelected ? selectedStyle : textStyle,
+        widget.description,
+        style: isSelected ? selectedStyle : widget.textStyle,
       ),
     );
-    if (shouldFlex) {
+    if (widget.shouldFlex) {
       radioButtonText = Flexible(child: radioButtonText);
     }
 
-    final hasFocusBorder = focusBorder != null ||
-        focusBorderRadius != null ||
-        focusBorderPadding != null;
+    final hasFocusBorder = widget.focusBorder != null ||
+        widget.focusBorderRadius != null ||
+        widget.focusBorderPadding != null;
+    // The option's merged semantics node takes this tap, so it must also
+    // clear a selected toggleable option, as tapping the Radio does.
+    final onTap = widget.onChanged != null
+        ? () => _select(widget.toggleable && isSelected ? null : widget.value)
+        : null;
 
-    if (hasFocusBorder && showBorderAroundRadioButtonAndText) {
-      return FFFocusIndicator(
-        border: focusBorder,
-        borderRadius: focusBorderRadius,
-        padding: focusBorderPadding,
-        builder: (focusNode) => GestureDetector(
-          onTap: onChanged != null ? () => onChanged!(value) : null,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              if (buttonPosition == RadioButtonPosition.right) radioButtonText,
-              _buildRadio(focusNode),
-              if (buttonPosition == RadioButtonPosition.left) radioButtonText,
-            ],
+    // MergeSemantics makes the label and the radio one node, so screen
+    // readers announce the option's text with its checked state.
+    if (hasFocusBorder && widget.showBorderAroundRadioButtonAndText) {
+      return MergeSemantics(
+        child: FFFocusIndicator(
+          border: widget.focusBorder,
+          borderRadius: widget.focusBorderRadius,
+          padding: widget.focusBorderPadding,
+          builder: (focusNode) => GestureDetector(
+            onTap: onTap,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                if (widget.buttonPosition == RadioButtonPosition.right)
+                  radioButtonText,
+                _buildRadio(focusNode, hasFocusBorder: true),
+                if (widget.buttonPosition == RadioButtonPosition.left)
+                  radioButtonText,
+              ],
+            ),
           ),
         ),
       );
     }
 
     Widget radioWidget;
-    if (hasFocusBorder && !showBorderAroundRadioButtonAndText) {
+    if (hasFocusBorder && !widget.showBorderAroundRadioButtonAndText) {
       radioWidget = FFFocusIndicator(
-        border: focusBorder,
-        borderRadius: focusBorderRadius,
-        padding: focusBorderPadding,
-        builder: (focusNode) => _buildRadio(focusNode),
+        border: widget.focusBorder,
+        borderRadius: widget.focusBorderRadius,
+        padding: widget.focusBorderPadding,
+        builder: (focusNode) => _buildRadio(focusNode, hasFocusBorder: true),
       );
     } else {
-      radioWidget = _buildRadio(null);
+      radioWidget = _buildRadio(_focusNode);
     }
 
-    return GestureDetector(
-      onTap: onChanged != null ? () => onChanged!(value) : null,
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          if (buttonPosition == RadioButtonPosition.right) radioButtonText,
-          radioWidget,
-          if (buttonPosition == RadioButtonPosition.left) radioButtonText,
-        ],
+    return MergeSemantics(
+      child: GestureDetector(
+        onTap: onTap,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            if (widget.buttonPosition == RadioButtonPosition.right)
+              radioButtonText,
+            radioWidget,
+            if (widget.buttonPosition == RadioButtonPosition.left)
+              radioButtonText,
+          ],
+        ),
       ),
     );
   }
 }
 
-class RadioGroup<T> extends StatelessWidget {
-  const RadioGroup.builder({
+// Named FFRadioGroup so it does not shadow Flutter's own RadioGroup.
+class FFRadioGroup<T> extends StatelessWidget {
+  const FFRadioGroup.builder({
     super.key,
     required this.groupValue,
     required this.onChanged,
     required this.items,
     required this.itemBuilder,
     required this.direction,
-    required this.optionHeight,
+    this.optionHeight,
     required this.horizontalAlignment,
     required this.activeColor,
     required this.toggleable,
@@ -299,6 +356,7 @@ class RadioGroup<T> extends StatelessWidget {
     this.focusBorderRadius,
     this.focusBorderPadding,
     this.showBorderAroundRadioButtonAndText = true,
+    this.optionSpacing,
   });
 
   final T? groupValue;
@@ -306,8 +364,9 @@ class RadioGroup<T> extends StatelessWidget {
   final RadioButtonBuilder Function(T value) itemBuilder;
   final void Function(T?)? onChanged;
   final Axis direction;
-  final double optionHeight;
+  final double? optionHeight;
   final double? optionWidth;
+  final double? optionSpacing;
   final WrapAlignment horizontalAlignment;
   final WrapCrossAlignment verticalAlignment;
   final Color activeColor;
@@ -349,15 +408,29 @@ class RadioGroup<T> extends StatelessWidget {
       ).toList();
 
   @override
-  Widget build(BuildContext context) => direction == Axis.horizontal
-      ? Wrap(
-          direction: direction,
-          alignment: horizontalAlignment,
-          children: _group,
-        )
-      : Wrap(
-          direction: direction,
-          crossAxisAlignment: verticalAlignment,
-          children: _group,
-        );
+  Widget build(BuildContext context) {
+    final effectiveSpacing = optionSpacing ?? 0.0;
+    // One radiogroup node, so screen readers announce "1 of 2", "2 of 2".
+    // Each option stays its own Tab stop (no arrow-key navigation).
+    return Semantics(
+      container: true,
+      explicitChildNodes: true,
+      role: SemanticsRole.radioGroup,
+      child: direction == Axis.horizontal
+          ? Wrap(
+              direction: direction,
+              alignment: horizontalAlignment,
+              spacing: effectiveSpacing,
+              runSpacing: effectiveSpacing,
+              children: _group,
+            )
+          : Wrap(
+              direction: direction,
+              crossAxisAlignment: verticalAlignment,
+              spacing: effectiveSpacing,
+              runSpacing: effectiveSpacing,
+              children: _group,
+            ),
+    );
+  }
 }

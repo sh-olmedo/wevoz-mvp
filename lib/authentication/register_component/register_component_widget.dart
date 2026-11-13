@@ -1334,16 +1334,16 @@ class _RegisterComponentWidgetState extends State<RegisterComponentWidget>
                                                               .primary,
                                                         ),
                                                         suffixIcon: InkWell(
-                                                          onTap: () =>
-                                                              safeSetState(
-                                                            () => _model
+                                                          onTap: () async {
+                                                            safeSetState(() => _model
                                                                     .passwordVisibility =
                                                                 !_model
-                                                                    .passwordVisibility,
-                                                          ),
-                                                          focusNode: FocusNode(
-                                                              skipTraversal:
-                                                                  true),
+                                                                    .passwordVisibility);
+                                                          },
+                                                          focusNode: _model
+                                                              .passwordPasswordVisibilityFocusNode
+                                                            ..skipTraversal =
+                                                                !(false),
                                                           child: Icon(
                                                             _model.passwordVisibility
                                                                 ? Icons

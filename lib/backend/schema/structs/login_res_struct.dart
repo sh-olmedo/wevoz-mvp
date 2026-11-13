@@ -222,7 +222,7 @@ class LoginResStruct extends BaseStruct {
         id,
         email,
         currentAlias,
-        aliases
+        const ListEquality().hash(aliases)
       ]);
 }
 

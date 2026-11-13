@@ -94,8 +94,6 @@ class _AliasPreferencesWidgetState extends State<AliasPreferencesWidget> {
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).widgetBackground,
                   borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(0.0),
-                    bottomRight: Radius.circular(0.0),
                     topLeft: Radius.circular(24.0),
                     topRight: Radius.circular(24.0),
                   ),
@@ -109,8 +107,6 @@ class _AliasPreferencesWidgetState extends State<AliasPreferencesWidget> {
                         color:
                             FlutterFlowTheme.of(context).widgetHeaderBackground,
                         borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(0.0),
-                          bottomRight: Radius.circular(0.0),
                           topLeft: Radius.circular(24.0),
                           topRight: Radius.circular(24.0),
                         ),
@@ -297,7 +293,7 @@ class _AliasPreferencesWidgetState extends State<AliasPreferencesWidget> {
                                         );
 
                                         _shouldSetState = true;
-                                        authManager.updateAuthUserData(
+                                        await authManager.updateAuthUserData(
                                           authenticationToken:
                                               currentAuthenticationToken,
                                           authUid: currentUserUid,

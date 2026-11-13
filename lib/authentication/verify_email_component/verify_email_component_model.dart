@@ -10,6 +10,7 @@ import 'dart:math';
 import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
+import 'package:flutter/services.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'verify_email_component_widget.dart' show VerifyEmailComponentWidget;
 import 'package:flutter/gestures.dart';

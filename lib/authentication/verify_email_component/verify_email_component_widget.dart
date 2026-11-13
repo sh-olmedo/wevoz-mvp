@@ -10,6 +10,7 @@ import 'dart:math';
 import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
+import 'package:flutter/services.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -333,6 +334,9 @@ class _VerifyEmailComponentWidgetState extends State<VerifyEmailComponentWidget>
                               obscureText: false,
                               hintCharacter: '●',
                               keyboardType: TextInputType.number,
+                              inputFormatters: [
+                                FilteringTextInputFormatter.digitsOnly
+                              ],
                               pinTheme: PinTheme(
                                 fieldHeight: 56.0,
                                 fieldWidth: 40.0,

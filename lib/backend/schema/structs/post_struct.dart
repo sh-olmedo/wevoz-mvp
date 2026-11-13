@@ -584,10 +584,10 @@ class PostStruct extends BaseStruct {
   int get hashCode => const ListEquality().hash([
         ageRating,
         alias,
-        audienceMembers,
+        const ListEquality().hash(audienceMembers),
         audioTranscript,
         audioUrl,
-        chapters,
+        const ListEquality().hash(chapters),
         commentsCount,
         createdAt,
         id,
@@ -600,8 +600,8 @@ class PostStruct extends BaseStruct {
         reproductionCount,
         source,
         status,
-        targetCountries,
-        tags,
+        const ListEquality().hash(targetCountries),
+        const ListEquality().hash(tags),
         timeDuration,
         updatedAt,
         userId

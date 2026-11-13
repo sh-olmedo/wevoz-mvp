@@ -79,7 +79,9 @@ class _RestrictedContentWidgetState extends State<RestrictedContentWidget> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   FaIcon(
-                    FontAwesomeIcons.exclamationCircle,
+                    FaIconData(const IconData(/* exclamationCircle */ 0xf06a,
+                        fontFamily: 'FontAwesomeSolid',
+                        fontPackage: 'font_awesome_flutter')),
                     color: FlutterFlowTheme.of(context).error,
                     size: 24.0,
                   ),

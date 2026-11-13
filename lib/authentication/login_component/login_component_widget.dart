@@ -470,12 +470,14 @@ class _LoginComponentWidgetState extends State<LoginComponentWidget>
                                                 .primary,
                                           ),
                                           suffixIcon: InkWell(
-                                            onTap: () => safeSetState(
-                                              () => _model.passwordVisibility =
-                                                  !_model.passwordVisibility,
-                                            ),
-                                            focusNode:
-                                                FocusNode(skipTraversal: true),
+                                            onTap: () async {
+                                              safeSetState(() => _model
+                                                      .passwordVisibility =
+                                                  !_model.passwordVisibility);
+                                            },
+                                            focusNode: _model
+                                                .passwordPasswordVisibilityFocusNode
+                                              ..skipTraversal = !(false),
                                             child: Icon(
                                               _model.passwordVisibility
                                                   ? Icons.visibility_outlined
@@ -670,7 +672,7 @@ class _LoginComponentWidgetState extends State<LoginComponentWidget>
                                                               ?.statusCode ??
                                                           200) ==
                                                       200) {
-                                                    authManager
+                                                    await authManager
                                                         .updateAuthUserData(
                                                       authenticationToken:
                                                           currentAuthenticationToken,

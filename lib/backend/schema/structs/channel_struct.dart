@@ -491,7 +491,7 @@ class ChannelStruct extends BaseStruct {
         alias,
         audioTranscript,
         audioUrl,
-        chapters,
+        const ListEquality().hash(chapters),
         commentsCount,
         description,
         duration,
@@ -504,7 +504,7 @@ class ChannelStruct extends BaseStruct {
         reactionCount,
         reproductionCount,
         source,
-        tags,
+        const ListEquality().hash(tags),
         userId
       ]);
 }

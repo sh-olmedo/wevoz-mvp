@@ -381,7 +381,9 @@ class _CommentExpandedWidgetState extends State<CommentExpandedWidget>
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               FaIcon(
-                                FontAwesomeIcons.comments,
+                                FaIconData(const IconData(/* comments */ 0xf086,
+                                    fontFamily: 'FontAwesomeRegular',
+                                    fontPackage: 'font_awesome_flutter')),
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
                                 size: 14.0,

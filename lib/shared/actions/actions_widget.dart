@@ -311,7 +311,9 @@ class _ActionsWidgetState extends State<ActionsWidget>
                         },
                         text: '',
                         icon: FaIcon(
-                          FontAwesomeIcons.comments,
+                          FaIconData(const IconData(/* comments */ 0xf086,
+                              fontFamily: 'FontAwesomeRegular',
+                              fontPackage: 'font_awesome_flutter')),
                           size: 20.0,
                         ),
                         options: FFButtonOptions(
@@ -588,7 +590,9 @@ class _ActionsWidgetState extends State<ActionsWidget>
                           },
                           text: 'Comment',
                           icon: FaIcon(
-                            FontAwesomeIcons.comments,
+                            FaIconData(const IconData(/* comments */ 0xf086,
+                                fontFamily: 'FontAwesomeRegular',
+                                fontPackage: 'font_awesome_flutter')),
                             size: 20.0,
                           ),
                           options: FFButtonOptions(
@@ -738,8 +742,6 @@ class _ActionsWidgetState extends State<ActionsWidget>
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(24.0),
                     bottomRight: Radius.circular(24.0),
-                    topLeft: Radius.circular(0.0),
-                    topRight: Radius.circular(0.0),
                   ),
                   child: Container(
                     width: 300.0,
@@ -748,8 +750,6 @@ class _ActionsWidgetState extends State<ActionsWidget>
                       borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(24.0),
                         bottomRight: Radius.circular(24.0),
-                        topLeft: Radius.circular(0.0),
-                        topRight: Radius.circular(0.0),
                       ),
                     ),
                     alignment: AlignmentDirectional(0.0, 1.0),

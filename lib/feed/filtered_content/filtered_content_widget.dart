@@ -251,10 +251,8 @@ class _FilteredContentWidgetState extends State<FilteredContentWidget>
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).transparent,
                         borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(24.0),
-                          bottomRight: Radius.circular(0.0),
                           topLeft: Radius.circular(24.0),
-                          topRight: Radius.circular(0.0),
+                          bottomLeft: Radius.circular(24.0),
                         ),
                       ),
                       child: Padding(

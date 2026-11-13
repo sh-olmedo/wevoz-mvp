@@ -109,8 +109,6 @@ class _SaveInPlaylistWidgetState extends State<SaveInPlaylistWidget>
               alignment: AlignmentDirectional(0.0, 1.0),
               child: ClipRRect(
                 borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(0.0),
-                  bottomRight: Radius.circular(0.0),
                   topLeft: Radius.circular(24.0),
                   topRight: Radius.circular(24.0),
                 ),
@@ -119,8 +117,6 @@ class _SaveInPlaylistWidgetState extends State<SaveInPlaylistWidget>
                   decoration: BoxDecoration(
                     color: Color(0xFF082330),
                     borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(0.0),
-                      bottomRight: Radius.circular(0.0),
                       topLeft: Radius.circular(24.0),
                       topRight: Radius.circular(24.0),
                     ),
